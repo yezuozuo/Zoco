@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zoco markdown</title>
+    <style type="text/css">
+        #e {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            font-size: 16px;
+        }
+    </style>
+    <script src="apps/static/js/markdown/ace.js"></script>
+    <script src="apps/static/js/jquery/jquery-2.0.0.min.js"></script>
+    <script>
+        var myKey = "SecretKeyz";
+        $(document).ready(function () {
+            var e = ace.edit("e");
+            var url = "http://api.openkeyval.org/" + myKey;
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                success: function (data) {
+                    e.setTheme("ace/theme/tomorrow_night_eighties");
+                    e.getSession().setMode("ace/mode/markdown");
+                    e.setValue(data);
+                }
+            });
+
+            $("#e").on("keydown", function (b) {
+                if (b.ctrlKey && 83 == b.which) {
+                    b.preventDefault();
+                    var data = myKey + "=" + encodeURIComponent(e.getValue());
+                    $.ajax({
+                        data: data,
+                        url: "http://localhost/Zoco/?c=markdown&v=save",
+                        dataType: "json"
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="e"></div>
+</body>
+</html>
