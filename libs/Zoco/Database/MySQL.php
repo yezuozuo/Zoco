@@ -112,7 +112,7 @@ class MySQL implements \Zoco\IDatabase {
     public function connect() {
         $dbConfig = $this->config;
         if (empty($dbConfig['persistent'])) {
-            $this->conn = mysql_connect($dbConfig['host'] . ':' . $dbConfig['port'], $dbConfig['user'], $dbConfig['password']);
+            $this->conn = @mysql_connect($dbConfig['host'] . ':' . $dbConfig['port'], $dbConfig['user'], $dbConfig['password']);
         } /**
          * 长连接
          */
