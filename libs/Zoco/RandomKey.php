@@ -185,13 +185,13 @@ class RandomKey {
     }
 
     /**
-     * 声称不重复的随机数
+     * 生成不重复的随机数
      * @param int $from
      * @param int $to
      * @param int $count
      */
     static public function zocoRandom($from = 1,$to = 100,$count = 6) {
-        $numbers =range($from,$to);
+        $numbers = range($from,$to);
         shuffle($numbers);
         $result = array_slice($numbers,0,$count);
         return $result;

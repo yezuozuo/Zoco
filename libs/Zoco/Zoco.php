@@ -534,8 +534,6 @@ class Zoco {
          */
         if (!preg_match('/^[a-z0-9_]+$/i', $mvc['view'])) {
             return Zoco\Error::info('MVC Error!', "view[{$mvc['view']}] name incorrect.Regx: /^[a-z0-9_]+$/i");
-            echo Zoco\Error::info('API Error', 'zoco is watching you');
-            exit;
         }
 
         /**

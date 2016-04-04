@@ -81,7 +81,7 @@ class MySQLi extends \mysqli implements \Zoco\IDatabase {
             return false;
         }
 
-        return new MySQLRecord($result);
+        return new MySQLiRecord($result);
     }
 
     /**
@@ -120,7 +120,7 @@ class MySQLi extends \mysqli implements \Zoco\IDatabase {
         if (!empty($dbConfig['persistent'])) {
             $dbConfig['host'] = 'p:' . $dbConfig['host'];
         }
-        parent::connect($dbConfig['host'], $dbConfig['user'], $dbConfig['password'], $dbConfig['dbname'], $dbConfig['port']);
+        parent::connect($dbConfig['host'], $dbConfig['user'], $dbConfig['password'], $dbConfig['name'], $dbConfig['port']);
 
         if (mysqli_connect_errno()) {
             trigger_error("Mysqli connect failed: " . mysqli_connect_error());

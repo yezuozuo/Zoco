@@ -1,7 +1,7 @@
 <?php
 
 $db['master'] = array(
-    'type'       => Zoco\Database::TYPE_MYSQL,
+    'type'       => Zoco\Database::TYPE_MYSQLi,
     'host'       => "127.0.0.1",
     'port'       => 3306,
     'user'       => "root",
@@ -12,7 +12,7 @@ $db['master'] = array(
 );
 
 $db['database'] = array(
-    'type'       => Zoco\Database::TYPE_MYSQL,
+    'type'       => Zoco\Database::TYPE_MYSQLi,
     'host'       => "127.0.0.1",
     'port'       => 3306,
     'user'       => "root",

@@ -1,7 +1,8 @@
 <?php
-
 if (!defined('DEBUG')) {
     define('DEBUG', 'on');
+    ini_set("display_errors",1);
+    error_reporting(E_ALL);
 }
 
 /**
@@ -15,7 +16,6 @@ if (!defined('WEBPATH')) {
  * 框架入口文件
  */
 require __DIR__ . '/libs/libConfig.php';
-
 /**
  * 启动
  */
