@@ -140,7 +140,7 @@ class Auth {
         $user = \Zoco::$php->user;
 
         if (!$user->isLogin()) {
-            $url = $user->config['loginUrl'] . '?c=visitor&v=login';
+            $url = $user->config['loginUrl'];
             header('Location: ' . $url);
 
             return false;
