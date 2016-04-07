@@ -85,7 +85,7 @@ class Pager {
     /**
      * 控制记录条的个数
      *
-*@var int
+     * @var int
      */
     public $pageBarNum = 10;
 

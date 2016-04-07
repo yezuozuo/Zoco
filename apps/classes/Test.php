@@ -4,7 +4,7 @@ namespace App;
 
 class Test {
     static public function hello() {
-        echo __CLASS__.": load.\n";
+        echo __CLASS__ . ": load.\n";
     }
 
     static public function test1() {
@@ -13,7 +13,8 @@ class Test {
 
     static public function dao() {
         $user = new \App\DAO\User(4);
-        $res = $user->get();
+        $res  = $user->get();
+
         return $res;
     }
 }

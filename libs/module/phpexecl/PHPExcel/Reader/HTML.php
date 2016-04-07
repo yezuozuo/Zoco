@@ -58,7 +58,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @var array
      */
-    private $_formats   = array(
+    private $_formats      = array(
         'h1' => array(
             'font' => array(
                 'bold' => true,
@@ -114,7 +114,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
             ),
         ),    //	Bottom border
     );
-    private $_dataArray = array();
+    private $_dataArray    = array();
     private $_tableLevel   = 0;
     private $_nestedColumn = array('A');
 

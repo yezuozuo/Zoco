@@ -1741,28 +1741,35 @@ class PHPExcel_Calculation_Financial {
      * RATE returns the #NUM! error value.
      * Excel Function:
      *        RATE(nper,pmt,pv[,fv[,type[,guess]]])
-
-*
-*@access    public
+     *
+     * @access    public
      * @category  Financial Functions
-     * @param    float                                                      nper        The total number of payment periods in an
-     *                                                                      annuity.
-     * @param    float                                                      pmt            The payment made each period and cannot
-     *                                                                      change over the life of the annuity.
-     *                                                                      Typically, pmt includes principal and
-     *                                                                      interest but no other fees or taxes.
-     * @param    float                                                      pv            The present value - the total amount that a
-     *                                                                      series of future payments is worth now.
-     * @param    float                                                      fv            The future value, or a cash balance you want
-     *                                                                      to attain after the last payment is made. If
-     *                                                                      fv is omitted, it is assumed to be 0 (the
-     *                                                                      future value of a loan, for example, is 0).
-     * @param    integer                                                    type        A number 0 or 1 and indicates when payments
-     *                                                                      are due:
+     * @param    float                                                      nper        The total number of payment
+     *                                                                                  periods in an annuity.
+     * @param    float                                                      pmt            The payment made each period
+     *                                                                                     and cannot change over the
+     *                                                                                     life of the annuity.
+     *                                                                                     Typically, pmt includes
+     *                                                                                     principal and interest but
+     *                                                                                     no other fees or taxes.
+     * @param    float                                                      pv            The present value - the total
+     *                                                                                    amount that a series of
+     *                                                                                    future payments is worth now.
+     * @param    float                                                      fv            The future value, or a cash
+     *                                                                                    balance you want to attain
+     *                                                                                    after the last payment is
+     *                                                                                    made. If fv is omitted, it is
+     *                                                                                    assumed to be 0 (the future
+     *                                                                                    value of a loan, for example,
+     *                                                                                    is 0).
+     * @param    integer                                                    type        A number 0 or 1 and indicates
+     *                                                                                  when payments are due:
      *                                                                      0 or omitted    At the end of the period.
-     *                                                                      1                At the beginning of the period.
-     * @param    float                                                      guess        Your guess for what the rate will be.
-     *                                                                      If you omit guess, it is assumed to be 10 percent.
+     *                                                                      1                At the beginning of the
+     *                                                                      period.
+     * @param    float                                                      guess        Your guess for what the rate
+     *                                                                                   will be. If you omit guess, it
+     *                                                                                   is assumed to be 10 percent.
      * @return    float
      **/
     public static function RATE($nper, $pmt, $pv, $fv = 0.0, $type = 0, $guess = 0.1) {
@@ -1812,9 +1819,8 @@ class PHPExcel_Calculation_Financial {
     /**
      * RECEIVED
      * Returns the price per $100 face value of a discounted security.
-
      *
-*@param    mixed                        settlement    The security's settlement date.
+     * @param    mixed                        settlement    The security's settlement date.
      *                                        The security settlement date is the date after the issue date when the
      *                                        security is traded to the buyer.
      * @param    mixed                        maturity    The security's maturity date.
@@ -2146,21 +2152,20 @@ class PHPExcel_Calculation_Financial {
     /**
      * YIELDDISC
      * Returns the annual yield of a security that pays interest at maturity.
-
-*
-*@param    mixed                              settlement    The security's settlement date.
-     *                                        The security's settlement date is the date after the issue date when the
-     *                                        security is traded to the buyer.
-     * @param    mixed                        maturity    The security's maturity date.
-     *                                        The maturity date is the date when the security expires.
-     * @param    int                          price        The security's price per $100 face value.
-     * @param    int                          redemption    The security's redemption value per $100 face value.
-     * @param    int                          basis        The type of day count to use.
-     *                                        0 or omitted    US (NASD) 30/360
-     *                                        1                Actual/actual
-     *                                        2                Actual/360
-     *                                        3                Actual/365
-     *                                        4                European 30/360
+     *
+     * @param    mixed                              settlement    The security's settlement date.
+     *                                              The security's settlement date is the date after the issue date
+     *                                              when the security is traded to the buyer.
+     * @param    mixed                              maturity    The security's maturity date.
+     *                                              The maturity date is the date when the security expires.
+     * @param    int                                price        The security's price per $100 face value.
+     * @param    int                                redemption    The security's redemption value per $100 face value.
+     * @param    int                                basis        The type of day count to use.
+     *                                              0 or omitted    US (NASD) 30/360
+     *                                              1                Actual/actual
+     *                                              2                Actual/360
+     *                                              3                Actual/365
+     *                                              4                European 30/360
      * @return    float
      */
     public static function YIELDDISC($settlement, $maturity, $price, $redemption, $basis = 0) {
@@ -2195,22 +2200,21 @@ class PHPExcel_Calculation_Financial {
     /**
      * YIELDMAT
      * Returns the annual yield of a security that pays interest at maturity.
-
-*
-*@param    mixed                              settlement    The security's settlement date.
-     *                                        The security's settlement date is the date after the issue date when the
-     *                                        security is traded to the buyer.
-     * @param    mixed                        maturity    The security's maturity date.
-     *                                        The maturity date is the date when the security expires.
-     * @param    mixed                        issue        The security's issue date.
-     * @param    int                          rate        The security's interest rate at date of issue.
-     * @param    int                          price        The security's price per $100 face value.
-     * @param    int                          basis        The type of day count to use.
-     *                                        0 or omitted    US (NASD) 30/360
-     *                                        1                Actual/actual
-     *                                        2                Actual/360
-     *                                        3                Actual/365
-     *                                        4                European 30/360
+     *
+     * @param    mixed                              settlement    The security's settlement date.
+     *                                              The security's settlement date is the date after the issue date
+     *                                              when the security is traded to the buyer.
+     * @param    mixed                              maturity    The security's maturity date.
+     *                                              The maturity date is the date when the security expires.
+     * @param    mixed                              issue        The security's issue date.
+     * @param    int                                rate        The security's interest rate at date of issue.
+     * @param    int                                price        The security's price per $100 face value.
+     * @param    int                                basis        The type of day count to use.
+     *                                              0 or omitted    US (NASD) 30/360
+     *                                              1                Actual/actual
+     *                                              2                Actual/360
+     *                                              3                Actual/365
+     *                                              4                European 30/360
      * @return    float
      */
     public static function YIELDMAT($settlement, $maturity, $issue, $rate, $price, $basis = 0) {
@@ -2260,9 +2264,8 @@ class PHPExcel_Calculation_Financial {
     /**
      * _firstDayOfMonth
      * Returns a boolean TRUE/FALSE indicating if this date is the first date of the month
-
-*
-*@param    DateTime $testDate The date for testing
+     *
+     * @param    DateTime $testDate The date for testing
      * @return    boolean
      */
     private static function _firstDayOfMonth($testDate) {

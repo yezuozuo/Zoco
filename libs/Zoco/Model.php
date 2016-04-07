@@ -62,7 +62,7 @@ class Model {
     /**
      * 表切片参数
      *
-*@var int
+     * @var int
      */
     public $tableSize = 1000000;
     /**
@@ -84,7 +84,7 @@ class Model {
     /**
      * 分表
      *
-*@var string
+     * @var string
      */
     protected $tableBeforeShared;
 
@@ -258,7 +258,7 @@ class Model {
     /**
      * 获取表的一段数据，查询的参数由$params指定
      *
-     * @param      $params
+     * @param             $params
      * @param \Zoco\Pager $pager
      * @return mixed
      * @throws \Exception
@@ -357,9 +357,9 @@ class Model {
  * @package Zoco
  */
 class Record implements \ArrayAccess {
-    const STATE_EMPTY  = 0;
-    const STATE_INSERT = 1;
-    const STATE_UPDATE = 2;
+    const STATE_EMPTY      = 0;
+    const STATE_INSERT     = 1;
+    const STATE_UPDATE     = 2;
     const CACHE_KEY_PREFIX = 'zoco_record_';
     /**
      * @var Database

@@ -89,7 +89,7 @@ class ModelLoader {
     /**
      * 加载表
      *
-*@param $table_name
+     * @param $table_name
      * @param $db_key
      * @return Model
      */
@@ -97,8 +97,8 @@ class ModelLoader {
         if (isset($this->_tables[$dbKey][$tableName])) {
             return $this->_tables[$dbKey][$tableName];
         } else {
-            $model        = new Model($this->zoco, $dbKey);
-            $model->table = $tableName;
+            $model                             = new Model($this->zoco, $dbKey);
+            $model->table                      = $tableName;
             $this->_tables[$dbKey][$tableName] = $model;
 
             return $model;

@@ -79,14 +79,14 @@ interface IDbRecord {
     /**
      * 获取单条数据
      *
-*@return mixed
+     * @return mixed
      */
     public function fetch();
 
     /**
      * 获取全部数据到数组
      *
-*@return mixed fetchAll
+     * @return mixed fetchAll
      */
     public function fetchAll();
 }
@@ -111,19 +111,19 @@ class Database {
     /**
      * 读取次数
      *
-*@var int
+     * @var int
      */
     public $readTimes = 0;
     /**
      * 写入次数
      *
-*@var int
+     * @var int
      */
     public $writeTimes = 0;
     /**
      * 数据库
      *
-*@var null|Database\PdoDB
+     * @var null|Database\PdoDB
      */
     public $_db = null;
     /**

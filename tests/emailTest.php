@@ -4,7 +4,7 @@ require __DIR__ . '/public.php';
 
 //\Zoco\Email::send('test','justyehao@qq.com',"Subject: Foo\nFrom: Rizzlas@my.domain\n");
 
-$mailto = 'justyehao@qq.com';
+$mailto  = 'justyehao@qq.com';
 $subject = '你个小蹦但';
 
 $from_name = 'test@iloveyou.com';

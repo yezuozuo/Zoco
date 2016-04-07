@@ -30,17 +30,17 @@
  * @copyright      Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Worksheet_AutoFilter_Column_Rule {
-    const AUTOFILTER_RULETYPE_FILTER             = 'filter';
-    const AUTOFILTER_RULETYPE_DATEGROUP          = 'dateGroupItem';
-    const AUTOFILTER_RULETYPE_CUSTOMFILTER       = 'customFilter';
-    const AUTOFILTER_RULETYPE_DYNAMICFILTER      = 'dynamicFilter';
-    const AUTOFILTER_RULETYPE_TOPTENFILTER       = 'top10Filter';
-    const AUTOFILTER_RULETYPE_DATEGROUP_YEAR     = 'year';
-    const AUTOFILTER_RULETYPE_DATEGROUP_MONTH    = 'month';
-    const AUTOFILTER_RULETYPE_DATEGROUP_DAY      = 'day';
-    const AUTOFILTER_RULETYPE_DATEGROUP_HOUR     = 'hour';
-    const AUTOFILTER_RULETYPE_DATEGROUP_MINUTE   = 'minute';
-    const AUTOFILTER_RULETYPE_DATEGROUP_SECOND   = 'second';
+    const AUTOFILTER_RULETYPE_FILTER               = 'filter';
+    const AUTOFILTER_RULETYPE_DATEGROUP            = 'dateGroupItem';
+    const AUTOFILTER_RULETYPE_CUSTOMFILTER         = 'customFilter';
+    const AUTOFILTER_RULETYPE_DYNAMICFILTER        = 'dynamicFilter';
+    const AUTOFILTER_RULETYPE_TOPTENFILTER         = 'top10Filter';
+    const AUTOFILTER_RULETYPE_DATEGROUP_YEAR       = 'year';
+    const AUTOFILTER_RULETYPE_DATEGROUP_MONTH      = 'month';
+    const AUTOFILTER_RULETYPE_DATEGROUP_DAY        = 'day';
+    const AUTOFILTER_RULETYPE_DATEGROUP_HOUR       = 'hour';
+    const AUTOFILTER_RULETYPE_DATEGROUP_MINUTE     = 'minute';
+    const AUTOFILTER_RULETYPE_DATEGROUP_SECOND     = 'second';
     const AUTOFILTER_RULETYPE_DYNAMIC_YESTERDAY    = 'yesterday';
     const AUTOFILTER_RULETYPE_DYNAMIC_TODAY        = 'today';
     const AUTOFILTER_RULETYPE_DYNAMIC_TOMORROW     = 'tomorrow';
@@ -87,9 +87,9 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule {
     const AUTOFILTER_RULETYPE_DYNAMIC_QUARTER_4    = 'Q4';
     const AUTOFILTER_RULETYPE_DYNAMIC_ABOVEAVERAGE = 'aboveAverage';
     const AUTOFILTER_RULETYPE_DYNAMIC_BELOWAVERAGE = 'belowAverage';
-    const AUTOFILTER_COLUMN_RULE_EQUAL           = 'equal';
-    const AUTOFILTER_COLUMN_RULE_NOTEQUAL        = 'notEqual';
-    const AUTOFILTER_COLUMN_RULE_GREATERTHAN     = 'greaterThan';
+    const AUTOFILTER_COLUMN_RULE_EQUAL             = 'equal';
+    const AUTOFILTER_COLUMN_RULE_NOTEQUAL          = 'notEqual';
+    const AUTOFILTER_COLUMN_RULE_GREATERTHAN       = 'greaterThan';
 
     /*
      *	The only valid filter rule operators for filter and customFilter types are:
@@ -103,11 +103,11 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule {
     const AUTOFILTER_COLUMN_RULE_GREATERTHANOREQUAL = 'greaterThanOrEqual';
     const AUTOFILTER_COLUMN_RULE_LESSTHAN           = 'lessThan';
     const AUTOFILTER_COLUMN_RULE_LESSTHANOREQUAL    = 'lessThanOrEqual';
-    const AUTOFILTER_COLUMN_RULE_TOPTEN_BY_VALUE = 'byValue';
-    const AUTOFILTER_COLUMN_RULE_TOPTEN_PERCENT  = 'byPercent';
-    const AUTOFILTER_COLUMN_RULE_TOPTEN_TOP      = 'top';
-    const AUTOFILTER_COLUMN_RULE_TOPTEN_BOTTOM   = 'bottom';
-    private static $_ruleTypes    = array(
+    const AUTOFILTER_COLUMN_RULE_TOPTEN_BY_VALUE    = 'byValue';
+    const AUTOFILTER_COLUMN_RULE_TOPTEN_PERCENT     = 'byPercent';
+    const AUTOFILTER_COLUMN_RULE_TOPTEN_TOP         = 'top';
+    const AUTOFILTER_COLUMN_RULE_TOPTEN_BOTTOM      = 'bottom';
+    private static $_ruleTypes      = array(
         //	Currently we're not handling
         //		colorFilter
         //		extLst
@@ -126,7 +126,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule {
         self::AUTOFILTER_RULETYPE_DATEGROUP_MINUTE,
         self::AUTOFILTER_RULETYPE_DATEGROUP_SECOND,
     );
-    private static $_dynamicTypes = array(
+    private static $_dynamicTypes   = array(
         self::AUTOFILTER_RULETYPE_DYNAMIC_YESTERDAY,
         self::AUTOFILTER_RULETYPE_DYNAMIC_TODAY,
         self::AUTOFILTER_RULETYPE_DYNAMIC_TOMORROW,
@@ -162,7 +162,7 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule {
         self::AUTOFILTER_RULETYPE_DYNAMIC_ABOVEAVERAGE,
         self::AUTOFILTER_RULETYPE_DYNAMIC_BELOWAVERAGE,
     );
-    private static $_operators    = array(
+    private static $_operators      = array(
         self::AUTOFILTER_COLUMN_RULE_EQUAL,
         self::AUTOFILTER_COLUMN_RULE_NOTEQUAL,
         self::AUTOFILTER_COLUMN_RULE_GREATERTHAN,
@@ -170,11 +170,11 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule {
         self::AUTOFILTER_COLUMN_RULE_LESSTHAN,
         self::AUTOFILTER_COLUMN_RULE_LESSTHANOREQUAL,
     );
-    private static $_topTenValue  = array(
+    private static $_topTenValue    = array(
         self::AUTOFILTER_COLUMN_RULE_TOPTEN_BY_VALUE,
         self::AUTOFILTER_COLUMN_RULE_TOPTEN_PERCENT,
     );
-    private static $_topTenType   = array(
+    private static $_topTenType     = array(
         self::AUTOFILTER_COLUMN_RULE_TOPTEN_TOP,
         self::AUTOFILTER_COLUMN_RULE_TOPTEN_BOTTOM,
     );

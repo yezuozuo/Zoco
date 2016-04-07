@@ -13,7 +13,7 @@ class Page extends Zoco\Controller {
     }
 
     public function index() {
-        $title = 'zoco';
+        $title     = 'zoco';
         $copyright = 'zoco';
         $this->assign('title', $title);
         $this->assign('copyright', $copyright);

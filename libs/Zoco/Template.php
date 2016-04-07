@@ -135,7 +135,7 @@ class Template extends \Smarty {
     /**
      * 传递大规模数据
      *
-*@param $data
+     * @param $data
      */
     public function push($data) {
         foreach ($data as $key => $value) {

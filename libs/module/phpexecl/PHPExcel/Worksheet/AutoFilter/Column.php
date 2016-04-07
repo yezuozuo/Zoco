@@ -38,7 +38,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
     //	Even though the filter rule is constant, the filtered data can vary
     //		e.g. filtered by date = TODAY
     const AUTOFILTER_FILTERTYPE_TOPTENFILTER = 'top10';
-    const AUTOFILTER_COLUMN_JOIN_AND = 'and';
+    const AUTOFILTER_COLUMN_JOIN_AND         = 'and';
 
     /* Multiple Rule Connections */
     const AUTOFILTER_COLUMN_JOIN_OR = 'or';

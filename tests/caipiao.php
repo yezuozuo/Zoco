@@ -5,11 +5,11 @@
 
 require __DIR__ . '/public.php';
 
-$res = \Zoco\RandomKey::zocoRandom(1,33,6);
+$res = \Zoco\RandomKey::zocoRandom(1, 33, 6);
 
-$tmp = \Zoco\RandomKey::zocoRandom(1,16,1);
+$tmp   = \Zoco\RandomKey::zocoRandom(1, 16, 1);
 $res[] = $tmp[0];
 
-foreach($res as $val) {
-    echo $val."   ";
+foreach ($res as $val) {
+    echo $val . "   ";
 }

@@ -251,7 +251,7 @@ class Excel {
         $objWriter = \PHPExcel_IOFactory::createWriter($this->excel, 'Excel2007');
         $begin     = Tool::getCurrentTime();
         $objWriter->save($this->path . $dirName . '/' . $fileName . '.xlsx');
-        $end = Tool::getCurrentTime();
+        $end   = Tool::getCurrentTime();
         $spend = $end - $begin;
         if ($spend > 30) {
             JS::echojs('if(confirm("执行超时！")){ window.history.back(-1);}');

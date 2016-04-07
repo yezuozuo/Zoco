@@ -58,7 +58,7 @@ class PHPExcel_Chart_Renderer_jpgraph {
         'goldenrod2'
     );
 
-    private static $_markSet  = array(
+    private static $_markSet    = array(
         'diamond'  => MARK_DIAMOND,
         'square'   => MARK_SQUARE,
         'triangle' => MARK_UTRIANGLE,
@@ -70,9 +70,9 @@ class PHPExcel_Chart_Renderer_jpgraph {
         'plus'     => MARK_CROSS
     );
     private static $_plotColour = 0;
-    private static $_plotMark = 0;
-    private        $_chart    = null;
-    private        $_graph    = null;
+    private static $_plotMark   = 0;
+    private        $_chart      = null;
+    private        $_graph      = null;
 
     /**
      * Create a new PHPExcel_Chart_Renderer_jpgraph

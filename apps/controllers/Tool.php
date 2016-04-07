@@ -36,11 +36,11 @@ class Tool extends Zoco\Controller {
     public function contact() {
         $this->assign('contact', array(
             array(
-                'name' => '叶左左',
+                'name'  => '叶左左',
                 'email' => 'justyehao@qq.com',
             )
         ));
-        $title = 'zoco';
+        $title     = 'zoco';
         $copyright = 'zoco';
         $this->assign('title', $title);
         $this->assign('copyright', $copyright);
@@ -56,17 +56,17 @@ class Tool extends Zoco\Controller {
      */
     public function upload() {
         if ($_FILES) {
-            $this->upload->thumbWidth = 136;
-            $this->upload->thumbHeight = 136;
+            $this->upload->thumbWidth    = 136;
+            $this->upload->thumbHeight   = 136;
             $this->upload->thumbQulitity = 100;
 
             //自动压缩图片
-            $this->upload->maxWidth = 600;
-            $this->upload->maxHeight = 600;
+            $this->upload->maxWidth    = 600;
+            $this->upload->maxHeight   = 600;
             $this->upload->maxQulitity = 90;
 
             $this->upload->shardType = 'user';
-            $upPic = $this->upload->save('file');
+            $upPic                   = $this->upload->save('file');
             if (empty($upPic)) {
                 return false;
             }
@@ -85,8 +85,8 @@ class Tool extends Zoco\Controller {
      */
     public function displayExcel() {
         include WEBPATH . '/libs/module/phpexecl/PHPExcel.php';
-        $filename = WEBPATH . '/data/excel/20151124/20160112152508.xlsx';
-        $objReader = new \PHPExcel_Reader_Excel2007();
+        $filename     = WEBPATH . '/data/excel/20151124/20160112152508.xlsx';
+        $objReader    = new \PHPExcel_Reader_Excel2007();
         $objWriteHTML = new \PHPExcel_Writer_HTML($objReader->load($filename));
         $objWriteHTML->save("php://output");
     }

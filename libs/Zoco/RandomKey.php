@@ -118,18 +118,18 @@ class RandomKey {
      * @return string
      */
     static public function produceName($sexType = 0, $nameType = 3) {
-        $nameArr                = require LIBPATH . '/data/name.php';
+        $nameArr = require LIBPATH . '/data/name.php';
         var_dump($nameArr);
         $countArr = array();
         if (!empty($nameArr)) {
             $countArr['surname'] = count($nameArr['surname']);//百家姓
-            $countArr['man1']   = count($nameArr['man1']);      //男单
-            $countArr['man2']   = count($nameArr['man2']);      //男双
-            $countArr['women1'] = count($nameArr['women1']);  //女单
-            $countArr['women2'] = count($nameArr['women2']);  //女双
+            $countArr['man1']    = count($nameArr['man1']);      //男单
+            $countArr['man2']    = count($nameArr['man2']);      //男双
+            $countArr['women1']  = count($nameArr['women1']);  //女单
+            $countArr['women2']  = count($nameArr['women2']);  //女双
         }
 
-        $sexType             = empty($sexType) ? rand(1, 2) : $sexType;
+        $sexType  = empty($sexType) ? rand(1, 2) : $sexType;
         $nameType = empty($nameType) ? rand(1, 4) : $nameType;
 
         switch ($nameType) {
@@ -145,15 +145,15 @@ class RandomKey {
                 break;
             case 3:
                 $indexSurname = rand(0, $countArr['surname'] - 1);
-                $indexOffset = self::getArrayIndex($sexType, 2);
-                $indexDouble = rand(0, $countArr[$indexOffset] - 1);
-                $name        = $nameArr['surname'][$indexSurname] . $nameArr[$indexOffset][$indexDouble];
+                $indexOffset  = self::getArrayIndex($sexType, 2);
+                $indexDouble  = rand(0, $countArr[$indexOffset] - 1);
+                $name         = $nameArr['surname'][$indexSurname] . $nameArr[$indexOffset][$indexDouble];
                 break;
             case 4:
                 $indexSurname = rand(0, $countArr['surname'] - 1);
-                $indexOffset = self::getArrayIndex($sexType, 1);
-                $indexDouble = rand(0, $countArr[$indexOffset] - 1);
-                $name        = $nameArr['surname'][$indexSurname] . $nameArr[$indexOffset][$indexDouble];
+                $indexOffset  = self::getArrayIndex($sexType, 1);
+                $indexDouble  = rand(0, $countArr[$indexOffset] - 1);
+                $name         = $nameArr['surname'][$indexSurname] . $nameArr[$indexOffset][$indexDouble];
                 break;
             default:
                 $name = '无名氏';
@@ -186,14 +186,16 @@ class RandomKey {
 
     /**
      * 生成不重复的随机数
+     *
      * @param int $from
      * @param int $to
      * @param int $count
      */
-    static public function zocoRandom($from = 1,$to = 100,$count = 6) {
-        $numbers = range($from,$to);
+    static public function zocoRandom($from = 1, $to = 100, $count = 6) {
+        $numbers = range($from, $to);
         shuffle($numbers);
-        $result = array_slice($numbers,0,$count);
+        $result = array_slice($numbers, 0, $count);
+
         return $result;
     }
 }

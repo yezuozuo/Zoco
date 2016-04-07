@@ -197,7 +197,7 @@ class SelectDB {
      * @param $field
      * @param $_where
      */
-    public function equal($_where,$field = 'id') {
+    public function equal($_where, $field = 'id') {
         /**
          * 子查询
          */
@@ -243,7 +243,7 @@ class SelectDB {
      *
      * @param $where
      */
-    public function where($where,$force = false) {
+    public function where($where, $force = false) {
         if ($this->where == '' || $force) {
             $this->where = 'where ' . $where;
         } else {

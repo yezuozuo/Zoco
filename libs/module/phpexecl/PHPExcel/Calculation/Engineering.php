@@ -748,8 +748,8 @@ class PHPExcel_Calculation_Engineering {
             )
         )
     );
-    private static $_two_sqrtpi = 1.128379167095512574;    //	function _parseComplex()
-    private static $_one_sqrtpi = 0.564189583547756287;
+    private static $_two_sqrtpi      = 1.128379167095512574;    //	function _parseComplex()
+    private static $_one_sqrtpi      = 0.564189583547756287;
 
     /**
      *    BESSELK

@@ -114,9 +114,8 @@ class PHPExcel_Calculation_Functions {
 
     /**
      * Set the Compatibility Mode
-
      *
-*@access    public
+     * @access    public
      * @category  Function Configuration
      * @param     string $compatibilityMode                 Compatibility Mode
      *                                                      Permitted values are:
@@ -160,9 +159,8 @@ class PHPExcel_Calculation_Functions {
     /**
      * Set the Return Date Format used by functions that return a date/time (Excel, PHP Serialized Numeric or PHP
      * Object)
-
      *
-*@access    public
+     * @access    public
      * @category  Function Configuration
      * @param     string $returnDateType                          Return Date Format
      *                                                            Permitted values are:

@@ -87,8 +87,8 @@ function _smarty_tplfunc_$_match[2]_$_match[3](&\$$this_varname)
     $_include_compiled .= "\n\n?>\n";
 
     $_params = array(
-        'filename' => $_compile_path,
-        'contents' => $_include_compiled,
+        'filename'    => $_compile_path,
+        'contents'    => $_include_compiled,
         'create_dirs' => true
     );
 

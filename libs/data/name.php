@@ -3,7 +3,7 @@
  * 姓名
  */
 $nameArr = array(
-    'surname' => array(
+    'surname'   => array(
         '赵',
         '钱',
         '孙',
@@ -501,7 +501,7 @@ $nameArr = array(
         '言',
         '福'
     ),
-    'man1'   => array(
+    'man1'      => array(
         '乞',
         '戾',
         '嵩',
@@ -619,7 +619,7 @@ $nameArr = array(
         '纲',
         '囧'
     ),
-    'man2'   => array(
+    'man2'      => array(
         '之玉',
         '越泽',
         '锦程',
@@ -2811,7 +2811,7 @@ $nameArr = array(
         '玙珣',
         '棋机'
     ),
-    'women1' => array(
+    'women1'    => array(
         '姿',
         '芷',
         '芝',
@@ -2910,7 +2910,7 @@ $nameArr = array(
         '芹',
         '巧'
     ),
-    'women2' => array(
+    'women2'    => array(
         '醉易',
         '紫萱',
         '紫霜',

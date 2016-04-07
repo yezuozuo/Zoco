@@ -4,26 +4,27 @@ namespace Zoco;
 
 class Upload {
     public $mimes;
-    public $maxSize = 0;
-    public $allow = array('jpg', 'gif', 'png');
-    public $nameType = '';
+    public $maxSize      = 0;
+    public $allow        = array('jpg', 'gif', 'png');
+    public $nameType     = '';
     public $baseDir;
     public $baseUrl;
     public $subDir;
-    public $shardType = 'date';
+    public $shardType    = 'date';
     public $shardArgv;
     public $filenameType = 'randomKey';
-    public $existCheck = true;
-    public $overWrite = true;
-    public $maxWidth = 0;
+    public $existCheck   = true;
+    public $overWrite    = true;
+    public $maxWidth     = 0;
     public $maxHeight;
-    public $maxQuality = 80;
+    public $maxQuality   = 80;
     public $thumbDir;
-    public $thumbWidth = 0;
+    public $thumbWidth   = 0;
     public $thumbHeight;
     public $thumbQuality = 100;
     public $errMsg;
     public $errCode;
+
     public function __construct($config) {
         if (empty($config['baseDir']) || empty($config['baseUrl'])) {
             throw new \Exception(__CLASS__ . ' require baseDir and baseUrl');
@@ -138,7 +139,7 @@ class Upload {
                 $thumbFile = str_replace('.' . $fileType, '_' . $this->thumbWidth . 'x' . $this->thumbHeight . '.' . $fileType, $fileName);
                 Image::thumbnail($saveFileName, $path . '/' . $thumbFile, $this->maxWidth, $this->maxHeight, $this->maxQuality);
                 Image::thumbnail($saveFileName, $path . '/' . $thumbFile, $this->thumbWidth, $this->thumbHeight, $this->thumbQuality);
-                $return['thumb'] =  "{$this->baseUrl}/{$this->subDir}/{$subDir}/{$thumbFile}";
+                $return['thumb'] = "{$this->baseUrl}/{$this->subDir}/{$subDir}/{$thumbFile}";
             }
             if ($this->maxWidth and in_array($fileType, array('gif', 'jpg', 'jpeg', 'bmp', 'png'))) {
                 Image::thumbnail($saveFileName,

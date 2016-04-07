@@ -5,7 +5,7 @@ $log['db'] = array(
 );
 
 $log['echo'] = array(
-    'type' => 'EchoLog',
+    'type'    => 'EchoLog',
     'display' => false,
 );
 

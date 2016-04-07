@@ -4,6 +4,10 @@ namespace Zoco\Queue;
 
 class Redis implements \Zoco\IFace\Queue {
     /**
+     * @var string
+     */
+    static public $prefix = 'zoco_queue';
+    /**
      * @var \Redis
      */
     public $_redis;
@@ -11,11 +15,6 @@ class Redis implements \Zoco\IFace\Queue {
      * @var
      */
     public $config;
-
-    /**
-     * @var string
-     */
-    static public $prefix = 'zoco_queue';
 
     /**
      * @param $config
@@ -51,14 +50,6 @@ class Redis implements \Zoco\IFace\Queue {
     }
 
     /**
-     * @param int $timeout
-     * @return bool|string
-     */
-    public function pop() {
-        return $this->_redis->rPop(self::$prefix);
-    }
-
-    /**
      * @param $value
      * @return int
      */
@@ -81,5 +72,13 @@ class Redis implements \Zoco\IFace\Queue {
         }
 
         return $ret;
+    }
+
+    /**
+     * @param int $timeout
+     * @return bool|string
+     */
+    public function pop() {
+        return $this->_redis->rPop(self::$prefix);
     }
 }

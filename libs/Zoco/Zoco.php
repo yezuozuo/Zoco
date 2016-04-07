@@ -417,7 +417,7 @@ class Zoco {
     /**
      * 加载内置的Zoco模块
      *
-*@param        $module
+     * @param        $module
      * @param string $key
      * @return mixed
      * @throws Exception

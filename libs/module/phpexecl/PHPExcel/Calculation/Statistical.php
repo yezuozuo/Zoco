@@ -58,7 +58,7 @@ define('SQRT2PI', 2.5066282746310005024157652848110452530069867406099);
 class PHPExcel_Calculation_Statistical {
 
 
-    private static $_logBetaCache_p = 0.0;    //	function _checkTrendArrays()
+    private static $_logBetaCache_p      = 0.0;    //	function _checkTrendArrays()
     private static $_logBetaCache_q      = 0.0;    //	function _beta()
     private static $_logBetaCache_result = 0.0;    //	function _incompleteBeta()
 
@@ -2051,7 +2051,7 @@ class PHPExcel_Calculation_Statistical {
         return self::NORMDIST($value, 0, 1, true);
     }    //	function MAX()
 
-/**
+    /**
      * NORMDIST
      * Returns the normal distribution for the specified mean and standard deviation. This
      * function has a very wide range of applications in statistics, including hypothesis
@@ -2084,7 +2084,7 @@ class PHPExcel_Calculation_Statistical {
         return PHPExcel_Calculation_Functions::VALUE();
     }    //	function MAXA()
 
-/**
+    /**
      * MAX
      * MAX returns the value of the element of the values passed that has the highest value,
      *        with negative numbers considered smaller than positive numbers.

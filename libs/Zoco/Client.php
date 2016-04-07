@@ -57,22 +57,36 @@ class Client {
     static public function getBrowser() {
         if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Netscape[^;^)^(]*)|i")) {
             ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Opera[^;^)^(]*)|i")) {
-            ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(NetCaptor[^;^^()]*)|i")) {
-            ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Firefox[0-9/\.^)^(]*)|i")) {
-            ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(MSN[^;^)^(]*)|i")) {
-            ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Lynx[^;^)^(]*)|i")) {
-            ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(WebTV[^;^)^(]*)|i")) {
-            ;
-        } else if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Chrome[^;^)^(]*)|i")) {
-            ;
         } else {
-            $browser = '其它';
+            if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Opera[^;^)^(]*)|i")) {
+                ;
+            } else {
+                if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(NetCaptor[^;^^()]*)|i")) {
+                    ;
+                } else {
+                    if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Firefox[0-9/\.^)^(]*)|i")) {
+                        ;
+                    } else {
+                        if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(MSN[^;^)^(]*)|i")) {
+                            ;
+                        } else {
+                            if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Lynx[^;^)^(]*)|i")) {
+                                ;
+                            } else {
+                                if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(WebTV[^;^)^(]*)|i")) {
+                                    ;
+                                } else {
+                                    if ($browser = self::matchbrowser($_SERVER["HTTP_USER_AGENT"], "|(Chrome[^;^)^(]*)|i")) {
+                                        ;
+                                    } else {
+                                        $browser = '其它';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         return $browser;
@@ -102,32 +116,52 @@ class Client {
         if (strpos($agent, 'win')) {
             if (strpos($agent, '95')) {
                 $os = "Windows 95";
-            } else if (strpos($agent, '98')) {
-                $os = "Windows 98";
-            } else if (strpos($agent, 'nt 5.0')) {
-                $os = "Windows 2000";
-            } else if (strpos($agent, 'nt 5.1')) {
-                $os = "Windows XP";
-            } else if (strpos($agent, 'nt 5.2')) {
-                $os = "Windows 2003";
-            } else if (strpos($agent, 'nt')) {
-                $os = "Windows NT";
             } else {
-                $os = "Windows";
+                if (strpos($agent, '98')) {
+                    $os = "Windows 98";
+                } else {
+                    if (strpos($agent, 'nt 5.0')) {
+                        $os = "Windows 2000";
+                    } else {
+                        if (strpos($agent, 'nt 5.1')) {
+                            $os = "Windows XP";
+                        } else {
+                            if (strpos($agent, 'nt 5.2')) {
+                                $os = "Windows 2003";
+                            } else {
+                                if (strpos($agent, 'nt')) {
+                                    $os = "Windows NT";
+                                } else {
+                                    $os = "Windows";
+                                }
+                            }
+                        }
+                    }
+                }
             }
         } else {
             if (strpos($agent, 'linux')) {
                 $os = "Linux";
-            } else if (strpos($agent, 'Mac')) {
-                $os = "Macintosh";
-            } else if (strpos($agent, 'PowerPC')) {
-                $os = "PowerPC";
-            } else if (strpos($agent, 'NetBSD')) {
-                $os = "NetBSD";
-            } else if (strpos($agent, 'BSD')) {
-                $os = "BSD";
-            } else if (strpos($agent, 'FreeBSD')) {
-                $os = "FreeBSD";
+            } else {
+                if (strpos($agent, 'Mac')) {
+                    $os = "Macintosh";
+                } else {
+                    if (strpos($agent, 'PowerPC')) {
+                        $os = "PowerPC";
+                    } else {
+                        if (strpos($agent, 'NetBSD')) {
+                            $os = "NetBSD";
+                        } else {
+                            if (strpos($agent, 'BSD')) {
+                                $os = "BSD";
+                            } else {
+                                if (strpos($agent, 'FreeBSD')) {
+                                    $os = "FreeBSD";
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }

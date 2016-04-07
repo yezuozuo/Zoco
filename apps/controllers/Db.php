@@ -27,7 +27,7 @@ class Db extends Zoco\Controller {
         $this->sdb->pageSize(5);
         $this->sdb->paging();
         $page = $this->sdb->pager->render();
-        $res = $this->sdb->getAll();
+        $res  = $this->sdb->getAll();
         echo $page;
         echo $this->sdb->getSql();
         var_dump($res);
@@ -52,7 +52,7 @@ class Db extends Zoco\Controller {
     public function selectDbInsert() {
         $this->sdb->from('dbLog');
         $arr = array(
-            'msg' => 'insert',
+            'msg'     => 'insert',
             'logType' => '1',
         );
         $this->sdb->insert($arr);
@@ -62,7 +62,7 @@ class Db extends Zoco\Controller {
         $this->sdb->from('dbLog');
         $this->sdb->equal(5);
         $arr = array(
-            'msg' => 'updated',
+            'msg'     => 'updated',
             'logType' => '1',
         );
         $this->sdb->update($arr);
@@ -74,29 +74,29 @@ class Db extends Zoco\Controller {
         $this->sdb->delete();
     }
 
-    public function selectDbCount(){
+    public function selectDbCount() {
         $this->sdb->from('dbLog');
         echo $this->sdb->count();
     }
 
     public function dbInsert() {
         $arr = array(
-            'msg' => 'insert',
+            'msg'     => 'insert',
             'logType' => '1',
         );
-        $this->db->insert($arr,'dbLog');
+        $this->db->insert($arr, 'dbLog');
     }
 
     public function dbUpdate() {
         $arr = array(
-            'msg' => 'insert',
+            'msg'     => 'insert',
             'logType' => '2',
         );
-        $this->db->update(2,$arr,'dbLog');
+        $this->db->update(2, $arr, 'dbLog');
     }
 
     public function dbDelete() {
-        $this->db->delete(3,'dbLog');
+        $this->db->delete(3, 'dbLog');
     }
 
     public function modelPut() {
@@ -149,11 +149,11 @@ class Db extends Zoco\Controller {
     }
 
     public function modelDeletes() {
-        $model    = Model('DbLog');
+        $model = Model('DbLog');
         $model->dels(
             array(
                 'where' => 'logtype < 5',
-                )
+            )
         );
     }
 }

@@ -59,16 +59,6 @@ class ZDiff {
     }
 
     /**
-     * @param \ZDiffRendererAbstract $renderer
-     * @return mixed
-     */
-    public function render(\ZDiffRendererAbstract $renderer) {
-        $renderer->diff = $this;
-
-        return $renderer->render();
-    }
-
-    /**
      * @param int  $start
      * @param null $end
      * @return array
@@ -124,6 +114,16 @@ class ZDiff {
     public function sideBySide() {
         $renderer = new \ZDiffRendererHtmlSideBySide();
         echo $this->render($renderer);
+    }
+
+    /**
+     * @param \ZDiffRendererAbstract $renderer
+     * @return mixed
+     */
+    public function render(\ZDiffRendererAbstract $renderer) {
+        $renderer->diff = $this;
+
+        return $renderer->render();
     }
 
     public function inline() {

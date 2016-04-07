@@ -348,10 +348,11 @@ class PHPExcel_Calculation_LookupRef {
      * Excel Function:
      *        =OFFSET(cellAddress, rows, cols, [height], [width])
      *
-     * @param    cellAddress                  The reference from which you want to base the offset. Reference must refer to
-     *                                        a cell or range of adjacent cells; otherwise, OFFSET returns the #VALUE!
-     *                                        error value.
-     * @param    rows                         The number of rows, up or down, that you want the upper-left cell to refer
+     * @param    cellAddress                  The reference from which you want to base the offset. Reference must
+     *                                            refer to a cell or range of adjacent cells; otherwise, OFFSET returns
+     *                                            the #VALUE! error value.
+     * @param    rows                         The number of rows, up or down, that you want the upper-left cell to
+     *                                            refer
      *                                        to.
      *                                        Using 5 as the rows argument specifies that the upper-left cell in the
      *                                        reference is five rows below reference. Rows can be positive (which means
@@ -363,10 +364,11 @@ class PHPExcel_Calculation_LookupRef {
      *                                        reference. Cols can be positive (which means to the right of the starting
      *                                        reference) or negative (which means to the left of the starting
      *                                        reference).
-     * @param    height                       The height, in number of rows, that you want the returned reference to be.
+     * @param    height                       The height, in number of rows, that you want the returned reference to
+     *                                            be.
      *                                        Height must be a positive number.
-     * @param    width                        The width, in number of columns, that you want the returned reference to be.
-     *                                    Width must be a positive number.
+     * @param    width                        The width, in number of columns, that you want the returned reference to
+     *                                            be. Width must be a positive number.
      * @return    string            A reference to a cell or range of cells
      */
     public static function OFFSET($cellAddress = null, $rows = 0, $columns = 0, $height = null, $width = null) {
@@ -819,12 +821,11 @@ class PHPExcel_Calculation_LookupRef {
      * VLOOKUP
      * The VLOOKUP function searches for value in the left-most column of lookup_array and returns the value in the
      * same row based on the index_number.
-
-*
+     *
      * @param          lookup_value           The value that you want to match in lookup_array
      * @param          lookup_array           The range of cells being searched
-     * @param          index_number           The column number in table_array from which the matching value must be returned.
-     *                                  The first column is 1.
+     * @param          index_number           The column number in table_array from which the matching value must be
+     *                                            returned. The first column is 1.
      * @param          not_exact_match        Determines if you are looking for an exact match based on lookup_value.
      * @return    mixed            The value of the found cell
      */

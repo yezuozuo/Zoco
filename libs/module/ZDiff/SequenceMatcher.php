@@ -158,103 +158,132 @@ class ZDiffSequenceMatcher {
     }
 
     /**
-     * @param $new
-     * @return bool
+     * @param int $context
+     * @return array
      */
-    private function isBJunk($new) {
-        if (isset($this->junkDict[$new])) {
-            return true;
+    public function getGroupedOpcodes($context = 3) {
+        $opCodes = $this->getOpCodes();
+        if (empty($opCodes)) {
+            $opCodes = array(
+                array(
+                    'equal',
+                    0,
+                    1,
+                    0,
+                    1,
+                )
+            );
         }
 
-        return false;
+        if ($opCodes[0][0] == 'equal') {
+            $opCodes[0] = array(
+                $opCodes[0][0],
+                max($opCodes[0][1], $opCodes[0][2] - $context),
+                $opCodes[0][2],
+                max($opCodes[0][3], $opCodes[0][4] - $context),
+                $opCodes[0][4],
+            );
+        }
+
+        $lastItem = count($opCodes) - 1;
+        if ($opCodes[$lastItem][0] == 'equal') {
+            list($tag, $i1, $i2, $j1, $j2) = $opCodes[$lastItem];
+            $opCodes[$lastItem] = array(
+                $tag,
+                $i1,
+                min($i2, $i1 + $context),
+                $j1,
+                min($j2, $j1 + $context),
+            );
+        }
+
+        $maxRange = $context * 2;
+        $groups   = array();
+        $group    = array();
+        foreach ($opCodes as $code) {
+            list($tag, $i1, $i2, $j1, $j2) = $code;
+            if ($tag == 'equal' && $i2 - $i1 > $maxRange) {
+                $group[]  = array(
+                    $tag,
+                    $i1,
+                    min($i2, $i1 + $context),
+                    $j1,
+                    min($j2, $j1 + $context),
+                );
+                $groups[] = $group;
+                $group    = array();
+                $i1       = max($i1, $i2 - $context);
+                $j1       = max($j1, $j2 - $context);
+            }
+            $group[] = array(
+                $tag,
+                $i1,
+                $i2,
+                $j1,
+                $j2,
+            );
+        }
+
+        if (!empty($group) && !(count($group) == 1 && $group[0][0] == 'equal')) {
+            $groups[] = $group;
+        }
+
+        return $groups;
     }
 
     /**
-     * @param $alo
-     * @param $ahi
-     * @param $blo
-     * @param $bhi
      * @return array
      */
-    public function findLongestMatch($alo, $ahi, $blo, $bhi) {
-        $old = $this->old;
-        $new = $this->new;
+    public function getOpCodes() {
+        if (!empty($this->opCodes)) {
+            return $this->opCodes;
+        }
 
-        $bestI    = $alo;
-        $bestJ    = $blo;
-        $bestSize = 0;
+        $i             = 0;
+        $j             = 0;
+        $this->opCodes = array();
 
-        $j2Len   = array();
-        $nothing = array();
-
-        for ($i = $alo; $i < $ahi; ++$i) {
-            $newJ2Len = array();
-            $jDict    = $this->arrayGetDefault($this->b2j, $old[$i], $nothing);
-            foreach ($jDict as $jKey => $j) {
-                if ($j < $blo) {
-                    continue;
+        $blocks = $this->getMatchingBlocks();
+        foreach ($blocks as $block) {
+            list($ai, $bj, $size) = $block;
+            $tag = '';
+            if ($i < $ai && $j < $bj) {
+                $tag = 'replace';
+            } else {
+                if ($i < $ai) {
+                    $tag = 'delete';
                 } else {
-                    if ($j >= $bhi) {
-                        break;
+                    if ($j < $bj) {
+                        $tag = 'insert';
                     }
-                }
-
-                $k            = $this->arrayGetDefault($j2Len, $j - 1, 0) + 1;
-                $newJ2Len[$j] = $k;
-                if ($k > $bestSize) {
-                    $bestI    = $i - $k + 1;
-                    $bestJ    = $j - $k + 1;
-                    $bestSize = $k;
                 }
             }
 
-            $j2Len = $newJ2Len;
+            if ($tag) {
+                $this->opCodes[] = array(
+                    $tag,
+                    $i,
+                    $ai,
+                    $j,
+                    $bj
+                );
+            }
+
+            $i = $ai + $size;
+            $j = $bj + $size;
+
+            if ($size) {
+                $this->opCodes[] = array(
+                    'equal',
+                    $ai,
+                    $i,
+                    $bj,
+                    $j
+                );
+            }
         }
 
-        while ($bestI > $alo && $bestJ > $blo && !$this->isBJunk($new[$bestJ - 1]) &&
-               !$this->linesAreDifferent($bestI - 1, $bestJ - 1)) {
-            --$bestI;
-            --$bestJ;
-            ++$bestSize;
-        }
-
-        while ($bestI + $bestSize < $ahi && ($bestJ + $bestSize) < $bhi &&
-               !$this->isBJunk($new[$bestJ + $bestSize]) && !$this->linesAreDifferent($bestI + $bestSize, $bestJ + $bestSize)) {
-            ++$bestSize;
-        }
-
-        return array(
-            $bestI,
-            $bestJ,
-            $bestSize
-        );
-    }
-
-    /**
-     * @param $oldIndex
-     * @param $newIndex
-     * @return bool
-     */
-    public function linesAreDifferent($oldIndex, $newIndex) {
-        $lineOld = $this->old[$oldIndex];
-        $lineNew = $this->new[$newIndex];
-
-        if ($this->options['ignoreWhitespace']) {
-            $replace = array("\t", ' ');
-            $lineOld = str_replace($replace, '', $lineOld);
-            $lineNew = str_replace($replace, '', $lineNew);
-        }
-
-        if ($this->options['ignoreCase']) {
-            $lineOld = strtolower($lineOld);
-            $lineNew = strtolower($lineNew);
-        }
-
-        if ($lineOld != $lineNew) {
-            return true;
-        }
-
-        return false;
+        return $this->opCodes;
     }
 
     /**
@@ -349,132 +378,117 @@ class ZDiffSequenceMatcher {
     }
 
     /**
+     * @param $alo
+     * @param $ahi
+     * @param $blo
+     * @param $bhi
      * @return array
      */
-    public function getOpCodes() {
-        if (!empty($this->opCodes)) {
-            return $this->opCodes;
-        }
+    public function findLongestMatch($alo, $ahi, $blo, $bhi) {
+        $old = $this->old;
+        $new = $this->new;
 
-        $i             = 0;
-        $j             = 0;
-        $this->opCodes = array();
+        $bestI    = $alo;
+        $bestJ    = $blo;
+        $bestSize = 0;
 
-        $blocks = $this->getMatchingBlocks();
-        foreach ($blocks as $block) {
-            list($ai, $bj, $size) = $block;
-            $tag = '';
-            if ($i < $ai && $j < $bj) {
-                $tag = 'replace';
-            } else {
-                if ($i < $ai) {
-                    $tag = 'delete';
+        $j2Len   = array();
+        $nothing = array();
+
+        for ($i = $alo; $i < $ahi; ++$i) {
+            $newJ2Len = array();
+            $jDict    = $this->arrayGetDefault($this->b2j, $old[$i], $nothing);
+            foreach ($jDict as $jKey => $j) {
+                if ($j < $blo) {
+                    continue;
                 } else {
-                    if ($j < $bj) {
-                        $tag = 'insert';
+                    if ($j >= $bhi) {
+                        break;
                     }
+                }
+
+                $k            = $this->arrayGetDefault($j2Len, $j - 1, 0) + 1;
+                $newJ2Len[$j] = $k;
+                if ($k > $bestSize) {
+                    $bestI    = $i - $k + 1;
+                    $bestJ    = $j - $k + 1;
+                    $bestSize = $k;
                 }
             }
 
-            if ($tag) {
-                $this->opCodes[] = array(
-                    $tag,
-                    $i,
-                    $ai,
-                    $j,
-                    $bj
-                );
-            }
-
-            $i = $ai + $size;
-            $j = $bj + $size;
-
-            if ($size) {
-                $this->opCodes[] = array(
-                    'equal',
-                    $ai,
-                    $i,
-                    $bj,
-                    $j
-                );
-            }
+            $j2Len = $newJ2Len;
         }
 
-        return $this->opCodes;
+        while ($bestI > $alo && $bestJ > $blo && !$this->isBJunk($new[$bestJ - 1]) &&
+               !$this->linesAreDifferent($bestI - 1, $bestJ - 1)) {
+            --$bestI;
+            --$bestJ;
+            ++$bestSize;
+        }
+
+        while ($bestI + $bestSize < $ahi && ($bestJ + $bestSize) < $bhi &&
+               !$this->isBJunk($new[$bestJ + $bestSize]) && !$this->linesAreDifferent($bestI + $bestSize, $bestJ + $bestSize)) {
+            ++$bestSize;
+        }
+
+        return array(
+            $bestI,
+            $bestJ,
+            $bestSize
+        );
     }
 
     /**
-     * @param int $context
-     * @return array
+     * @param $array
+     * @param $key
+     * @param $default
+     * @return mixed
      */
-    public function getGroupedOpcodes($context = 3) {
-        $opCodes = $this->getOpCodes();
-        if (empty($opCodes)) {
-            $opCodes = array(
-                array(
-                    'equal',
-                    0,
-                    1,
-                    0,
-                    1,
-                )
-            );
+    private function arrayGetDefault($array, $key, $default) {
+        if (isset($array[$key])) {
+            return $array[$key];
+        } else {
+            return $default;
+        }
+    }
+
+    /**
+     * @param $new
+     * @return bool
+     */
+    private function isBJunk($new) {
+        if (isset($this->junkDict[$new])) {
+            return true;
         }
 
-        if ($opCodes[0][0] == 'equal') {
-            $opCodes[0] = array(
-                $opCodes[0][0],
-                max($opCodes[0][1], $opCodes[0][2] - $context),
-                $opCodes[0][2],
-                max($opCodes[0][3], $opCodes[0][4] - $context),
-                $opCodes[0][4],
-            );
+        return false;
+    }
+
+    /**
+     * @param $oldIndex
+     * @param $newIndex
+     * @return bool
+     */
+    public function linesAreDifferent($oldIndex, $newIndex) {
+        $lineOld = $this->old[$oldIndex];
+        $lineNew = $this->new[$newIndex];
+
+        if ($this->options['ignoreWhitespace']) {
+            $replace = array("\t", ' ');
+            $lineOld = str_replace($replace, '', $lineOld);
+            $lineNew = str_replace($replace, '', $lineNew);
         }
 
-        $lastItem = count($opCodes) - 1;
-        if ($opCodes[$lastItem][0] == 'equal') {
-            list($tag, $i1, $i2, $j1, $j2) = $opCodes[$lastItem];
-            $opCodes[$lastItem] = array(
-                $tag,
-                $i1,
-                min($i2, $i1 + $context),
-                $j1,
-                min($j2, $j1 + $context),
-            );
+        if ($this->options['ignoreCase']) {
+            $lineOld = strtolower($lineOld);
+            $lineNew = strtolower($lineNew);
         }
 
-        $maxRange = $context * 2;
-        $groups   = array();
-        $group    = array();
-        foreach ($opCodes as $code) {
-            list($tag, $i1, $i2, $j1, $j2) = $code;
-            if ($tag == 'equal' && $i2 - $i1 > $maxRange) {
-                $group[]  = array(
-                    $tag,
-                    $i1,
-                    min($i2, $i1 + $context),
-                    $j1,
-                    min($j2, $j1 + $context),
-                );
-                $groups[] = $group;
-                $group    = array();
-                $i1       = max($i1, $i2 - $context);
-                $j1       = max($j1, $j2 - $context);
-            }
-            $group[] = array(
-                $tag,
-                $i1,
-                $i2,
-                $j1,
-                $j2,
-            );
+        if ($lineOld != $lineNew) {
+            return true;
         }
 
-        if (!empty($group) && !(count($group) == 1 && $group[0][0] == 'equal')) {
-            $groups[] = $group;
-        }
-
-        return $groups;
+        return false;
     }
 
     /**
@@ -484,15 +498,6 @@ class ZDiffSequenceMatcher {
         $matches = array_reduce($this->getMatchingBlocks(), array($this, 'ratioReduce'), 0);
 
         return $this->calculateRatio($matches, count($this->old) + count($this->new));
-    }
-
-    /**
-     * @param $sum
-     * @param $triple
-     * @return mixed
-     */
-    private function ratioReduce($sum, $triple) {
-        return $sum + ($triple[count($triple) - 1]);
     }
 
     /**
@@ -509,17 +514,12 @@ class ZDiffSequenceMatcher {
     }
 
     /**
-     * @param $array
-     * @param $key
-     * @param $default
+     * @param $sum
+     * @param $triple
      * @return mixed
      */
-    private function arrayGetDefault($array, $key, $default) {
-        if (isset($array[$key])) {
-            return $array[$key];
-        } else {
-            return $default;
-        }
+    private function ratioReduce($sum, $triple) {
+        return $sum + ($triple[count($triple) - 1]);
     }
 
     /**

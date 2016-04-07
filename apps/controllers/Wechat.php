@@ -16,7 +16,7 @@ class Wechat extends Zoco\Controller {
      * 主页
      */
     public function index() {
-        $code = $_GET['code'];
+        $code     = $_GET['code'];
         $userInfo = $this->getUserInfo($code);
         var_dump($userInfo);
     }
@@ -28,21 +28,21 @@ class Wechat extends Zoco\Controller {
      * @return mixed
      */
     private function getUserInfo($code) {
-        $appId = "wxa38d5e85c3eedbef";
+        $appId     = "wxa38d5e85c3eedbef";
         $appSecret = "f26be67324e1a04997f736fc3a776e8f";
 
-        $accessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appId&secret=$appSecret&code=$code&grant_type=authorization_code";
-        $accessTokenJson = $this->httpsRequest($accessTokenUrl);
+        $accessTokenUrl   = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appId&secret=$appSecret&code=$code&grant_type=authorization_code";
+        $accessTokenJson  = $this->httpsRequest($accessTokenUrl);
         $accessTokenArray = json_decode($accessTokenJson, true);
-        $openid         = $accessTokenArray['openid'];
+        $openid           = $accessTokenArray['openid'];
 
-        $newAccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appId&secret=$appSecret";
-        $newAccessTokenJson = $this->httpsRequest($newAccessTokenUrl);
+        $newAccessTokenUrl   = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appId&secret=$appSecret";
+        $newAccessTokenJson  = $this->httpsRequest($newAccessTokenUrl);
         $newAccessTokenArray = json_decode($newAccessTokenJson, true);
-        $newAccessToken    = $newAccessTokenArray['access_token'];
+        $newAccessToken      = $newAccessTokenArray['access_token'];
 
-        $userInfoUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$newAccessToken&openid=$openid";
-        $userInfoJson = $this->httpsRequest($userInfoUrl);
+        $userInfoUrl   = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$newAccessToken&openid=$openid";
+        $userInfoJson  = $this->httpsRequest($userInfoUrl);
         $userInfoArray = json_decode($userInfoJson, true);
 
         return $userInfoArray;
