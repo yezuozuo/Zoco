@@ -9,7 +9,7 @@ $subject = '你个小蹦但';
 
 $from_name = 'test@iloveyou.com';
 $from_mail = 'zoco';
-$replyto   = 'wang.zhihao@test.com';
+$replyto   = 'a@test.com';
 $message   = '笑崩但';
 $content   = '小懒猪';
 
