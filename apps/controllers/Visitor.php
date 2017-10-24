@@ -69,6 +69,6 @@ class Visitor extends Zoco\Controller {
      * 测试
      */
     public function register() {
-        $this->user->register('wangzhihao', '123');
+        $this->user->register('', '123');
     }
 }

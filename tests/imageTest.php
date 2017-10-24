@@ -6,8 +6,8 @@ global $php;
 
 $image = new \Zoco\Image();
 
-$source = '/Users/wangzhihao/Downloads/test.jpg';
-$dest   = '/Users/wangzhihao/Downloads/a.jpg';
+$source = '/Users//Downloads/test.jpg';
+$dest   = '/Users//Downloads/a.jpg';
 
 //\Zoco\Image::cut($source,$dest,300,4000);
 

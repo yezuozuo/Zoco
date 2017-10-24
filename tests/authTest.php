@@ -11,8 +11,8 @@ $auth   = new \Zoco\Auth($config);
 
 //$auth->createTable();
 
-$auth->register('jiaxiaoqi', '123');
-echo $auth->login('wangzhihao', '123', false);
+$auth->register('', '123');
+echo $auth->login('', '123', false);
 
 //$auth::loginRequire();
 
